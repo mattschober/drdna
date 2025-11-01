@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - HealaGuard® Enterprise Disaster Recovery Solutions</title>
+    <meta name="description" content="HealaGuard's comprehensive disaster recovery services: Real-Time Data Replication, Multi-Cloud Backup, Automated Failover, and Business Continuity Planning for Fortune 500 companies.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Menu */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo span {
+            color: #ef4444;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-links a.active {
+            color: #f97316;
+            background: rgba(249, 115, 22, 0.1);
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 120px 20px 60px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 60px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            margin-bottom: 3rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(249, 115, 22, 0.5);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-card h2 {
+            font-size: 2rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #f97316;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1.5rem;
+        }
+
+        .service-card ul li {
+            padding: 0.75rem 0;
+            color: #e2e8f0;
+            position: relative;
+            padding-left: 2rem;
+            line-height: 1.6;
+        }
+
+        .service-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.95);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 2rem 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-text a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-text a:hover {
+            color: #f97316;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                flex-direction: column;
+                background: rgba(10, 14, 39, 0.98);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                padding: 2rem;
+                gap: 1rem;
+                transition: left 0.3s ease;
+                border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                padding: 1rem;
+                font-size: 1.1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-header p {
+                font-size: 1.2rem;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .service-card h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="index.html" class="nav-logo">Heal<span>a</span>Guard<sup style="font-size: 0.5em;">®</sup></a>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Our Services</h1>
+        <p>Comprehensive enterprise disaster recovery solutions designed for Fortune 500 companies and mid-size enterprises</p>
+    </header>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="services-container">
+            
+            <!-- Service 1: Real-Time Data Replication -->
+            <article class="service-card">
+                <div class="service-icon">⚡</div>
+                <h2>Real-Time Data Replication</h2>
+                <p>Our real-time data replication service ensures continuous synchronization of your critical business data across multiple locations and cloud platforms. With near-zero Recovery Point Objective (RPO), your organization experiences virtually no data loss, even in the event of a disaster.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Continuous data synchronization with sub-second latency</li>
+                    <li>Multi-cloud support: AWS, Azure, Google Cloud, and on-premises</li>
+                    <li>Automatic conflict resolution and data integrity verification</li>
+                    <li>Block-level and byte-level replication options</li>
+                    <li>Bandwidth optimization and compression</li>
+                    <li>Real-time monitoring and alerting dashboards</li>
+                </ul>
+
+                <h3>Benefits</h3>
+                <p>Eliminate data loss risk, maintain business continuity, and ensure compliance with industry regulations including HIPAA, SOC 2, and PCI DSS.</p>
+            </article>
+
+            <!-- Service 2: Automated Failover Systems -->
+            <article class="service-card">
+                <div class="service-icon">🔄</div>
+                <h2>Automated Failover Systems</h2>
+                <p>Experience seamless business continuity with our intelligent automated failover technology. When primary systems fail, our solution instantly switches operations to backup infrastructure without manual intervention, minimizing downtime to seconds or minutes.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Intelligent health monitoring and failure detection</li>
+                    <li>Automatic failover with configurable thresholds</li>
+                    <li>Load balancing and traffic routing optimization</li>
+                    <li>Failback automation when primary systems recover</li>
+                    <li>Zero-data-loss failover for critical applications</li>
+                    <li>Comprehensive failover testing and validation</li>
+                </ul>
+
+                <h3>Benefits</h3>
+                <p>Achieve Recovery Time Objectives (RTO) measured in minutes, not hours. Maintain customer trust and protect revenue by ensuring 99.99% uptime.</p>
+            </article>
+
+            <!-- Service 3: Multi-Cloud Backup Solutions -->
+            <article class="service-card">
+                <div class="service-icon">☁️</div>
+                <h2>Multi-Cloud Backup Solutions</h2>
+                <p>Protect your enterprise data across multiple cloud platforms with our comprehensive backup solution. Our multi-cloud approach provides redundancy, flexibility, and protection against vendor lock-in while ensuring your data is always accessible.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Unified backup management across AWS, Azure, Google Cloud</li>
+                    <li>Incremental and differential backup options</li>
+                    <li>Immutable backups to protect against ransomware</li>
+                    <li>Automated retention policies and lifecycle management</li>
+                    <li>Point-in-time recovery for any data snapshot</li>
+                    <li>Cross-region and cross-cloud replication</li>
+                </ul>
+
+                <h3>Benefits</h3>
+                <p>Reduce storage costs with intelligent data deduplication while maintaining the flexibility to restore data to any cloud platform or on-premises infrastructure.</p>
+            </article>
+
+            <!-- Service 4: Annual Readiness Drills -->
+            <article class="service-card">
+                <div class="service-icon">🎯</div>
+                <h2>Annual Disaster Recovery Readiness Drills</h2>
+                <p>Testing is critical to effective disaster recovery. Our comprehensive annual drills simulate real disaster scenarios, identify gaps in your recovery plan, and train your team on proper procedures to ensure organizational readiness.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Customized disaster scenarios based on your business risks</li>
+                    <li>Full-scale failover testing in production or staging</li>
+                    <li>Team training and role-playing exercises</li>
+                    <li>Documentation review and procedure validation</li>
+                    <li>Performance metrics and gap analysis reporting</li>
+                    <li>Post-drill improvement recommendations</li>
+                </ul>
+
+                <h3>Benefits</h3>
+                <p>Gain confidence in your disaster recovery capabilities, meet compliance requirements, and continuously improve your business continuity posture.</p>
+            </article>
+
+            <!-- Service 5: 24/7 Monitoring & Support -->
+            <article class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h2>24/7 Enterprise Monitoring & Support</h2>
+                <p>Our round-the-clock operations center monitors your disaster recovery infrastructure continuously. Our team of certified specialists responds immediately to any issues, ensuring your data protection never sleeps.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Continuous infrastructure health monitoring</li>
+                    <li>Proactive alerting and incident response</li>
+                    <li>Dedicated disaster recovery specialists</li>
+                    <li>Rapid response SLAs with guaranteed response times</li>
+                    <li>Regular system health reports and optimization recommendations</li>
+                    <li>Direct escalation paths to senior engineers</li>
+                </ul>
+
+                <h3>Benefits</h3>
+                <p>Rest easy knowing experts are watching your critical systems 24/7, ready to respond instantly to any threat or issue.</p>
+            </article>
+
+            <!-- Service 6: Compliance & Security -->
+            <article class="service-card">
+                <div class="service-icon">🔒</div>
+                <h2>Compliance & Security Management</h2>
+                <p>Navigate complex regulatory requirements with confidence. Our disaster recovery solutions are designed to meet the strictest industry standards while maintaining military-grade security for your sensitive data.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li>SOC 2 Type II, HIPAA, and PCI DSS compliance</li>
+                    <li>End-to-end encryption in transit and at rest</li>
+                    <li>Multi-factor authentication and role-based access control</li>
+                    <li>Audit logging and compliance reporting</li>
+                    <li>Regular security assessments and penetration testing</li>
+                    <li>Data sovereignty and geographic compliance options</li>
+                </ul>
+
+                <h3>Benefits</h3>
+                <p>Meet regulatory requirements, protect customer data, and avoid costly penalties while maintaining the trust of your stakeholders.</p>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 style="font-size: 2.5rem; color: #ffffff; margin-bottom: 2rem;">Ready to Protect Your Business?</h2>
+        <a href="index.html#contact" class="cta-button">Get Your Free Assessment</a>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p class="footer-text">
+            <strong>HealaGuard® - Enterprise Disaster Recovery & Multi-Cloud Backup Solutions</strong><br>
+            Serving Mid-Size to Fortune 500 Companies Nationwide<br>
+            Real-Time Replication | 99.99% Uptime | 24/7 Support<br>
+            Powered by Schober Consulting LLC © 2025 | <a href="mailto:dr@migratewithmatt.com">dr@migratewithmatt.com</a>
+        </p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

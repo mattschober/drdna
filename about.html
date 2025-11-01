@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - HealaGuard® Enterprise Disaster Recovery</title>
+    <meta name="description" content="Learn about HealaGuard's mission to protect enterprise data through innovative disaster recovery solutions. Trusted by Fortune 500 companies and mid-size enterprises nationwide.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Menu */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo span {
+            color: #ef4444;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-links a.active {
+            color: #f97316;
+            background: rgba(249, 115, 22, 0.1);
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 120px 20px 60px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 60px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .content-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            margin-bottom: 3rem;
+        }
+
+        .content-card h2 {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card h3 {
+            font-size: 1.8rem;
+            color: #f97316;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-card p {
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            text-align: center;
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h4 {
+            font-size: 1.3rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            font-size: 1rem;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: rgba(59, 130, 246, 0.05);
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.95);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 2rem 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-text a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-text a:hover {
+            color: #f97316;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                flex-direction: column;
+                background: rgba(10, 14, 39, 0.98);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                padding: 2rem;
+                gap: 1rem;
+                transition: left 0.3s ease;
+                border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                padding: 1rem;
+                font-size: 1.1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-header p {
+                font-size: 1.2rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            .content-card h2 {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="index.html" class="nav-logo">Heal<span>a</span>Guard<sup style="font-size: 0.5em;">®</sup></a>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>About HealaGuard</h1>
+        <p>Protecting the DNA of your business through enterprise-grade disaster recovery solutions</p>
+    </header>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="content-container">
+            
+            <!-- Mission Section -->
+            <article class="content-card">
+                <h2>Our Mission</h2>
+                <p>At HealaGuard, we believe your company's data is its DNA—the essential code that defines who you are and enables everything you do. Our mission is to protect that DNA with unwavering dedication, ensuring your business can withstand any disruption and emerge stronger.</p>
+                <p>We provide enterprise-grade disaster recovery solutions that combine cutting-edge technology with personalized service. Whether you're a Fortune 500 technology company or a growing mid-size enterprise, we deliver the same level of excellence, reliability, and commitment to your success.</p>
+            </article>
+
+            <!-- Our Story Section -->
+            <article class="content-card">
+                <h2>Our Story</h2>
+                <p>HealaGuard was founded on a simple but powerful principle: businesses shouldn't have to fear data loss or downtime. After witnessing countless organizations struggle with inadequate disaster recovery solutions, we set out to create something better—a service that truly puts business continuity first.</p>
+                <p>Powered by Schober Consulting LLC, we bring decades of enterprise IT expertise to every client relationship. We've built our reputation by solving the toughest challenges in data protection, from complex multi-cloud architectures to mission-critical healthcare and financial services applications.</p>
+                <p>Today, we serve organizations across industries, from cancer research foundations protecting vital patient data to Fortune 500 technology companies ensuring zero-downtime operations. Every client, regardless of size, receives the same world-class service and enterprise-grade technology.</p>
+            </article>
+
+            <!-- Our Values -->
+            <article class="content-card">
+                <h2>Our Core Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🛡️</div>
+                        <h4>Reliability First</h4>
+                        <p>We engineer our solutions for 99.99% uptime because your business can't afford less. Every decision prioritizes your continuity.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <h4>True Partnership</h4>
+                        <p>We're not just a vendor—we're your partner in resilience. Your success is our success, and we're invested in your long-term growth.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🔒</div>
+                        <h4>Security & Compliance</h4>
+                        <p>We maintain the highest security standards and compliance certifications, treating your data with the same care we'd want for our own.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">⚡</div>
+                        <h4>Innovation</h4>
+                        <p>Technology evolves rapidly, and so do we. We continuously advance our platform to stay ahead of emerging threats and opportunities.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">💡</div>
+                        <h4>Transparency</h4>
+                        <p>No hidden fees, no surprises. We believe in clear communication, honest assessments, and straightforward solutions.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🎯</div>
+                        <h4>Excellence</h4>
+                        <p>Good enough isn't in our vocabulary. We strive for excellence in every aspect of our service, from technology to support.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div>
+                        <div class="stat-number">99.99%</div>
+                        <div class="stat-label">Uptime Guarantee</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Enterprise Support</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">&lt;60s</div>
+                        <div class="stat-label">Average Failover Time</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Data Loss Tolerance</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Choose Us -->
+            <article class="content-card">
+                <h2>Why Organizations Choose HealaGuard</h2>
+                
+                <h3>Enterprise-Grade Technology</h3>
+                <p>Our platform leverages the latest advances in cloud computing, automation, and data replication to deliver performance that meets the demands of the most critical enterprise workloads. We support all major cloud providers—AWS, Azure, Google Cloud—as well as on-premises and hybrid infrastructures.</p>
+                
+                <h3>Proven Expertise</h3>
+                <p>Our team includes certified disaster recovery specialists, cloud architects, and security experts who have designed and implemented solutions for some of the world's most demanding organizations. We bring that expertise to every client engagement.</p>
+                
+                <h3>Personalized Service</h3>
+                <p>Unlike large impersonal vendors, we take time to understand your unique business requirements, risks, and goals. Your disaster recovery strategy is customized to your specific needs, not forced into a one-size-fits-all template.</p>
+                
+                <h3>Continuous Improvement</h3>
+                <p>Through our annual readiness drills and ongoing monitoring, we don't just implement a solution and walk away. We continuously test, refine, and optimize your disaster recovery capabilities to ensure you're always prepared.</p>
+            </article>
+
+            <!-- Industries We Serve -->
+            <article class="content-card">
+                <h2>Industries We Serve</h2>
+                <p>HealaGuard provides specialized disaster recovery solutions across a wide range of industries, each with unique compliance, security, and performance requirements:</p>
+                
+                <h3>Healthcare & Life Sciences</h3>
+                <p>HIPAA-compliant solutions protecting patient records, medical imaging, research data, and clinical applications for hospitals, research institutions, and biotech companies.</p>
+                
+                <h3>Financial Services</h3>
+                <p>SOC 2 certified disaster recovery meeting regulatory requirements for banks, investment firms, insurance companies, and fintech platforms.</p>
+                
+                <h3>Technology & SaaS</h3>
+                <p>High-performance replication for software companies, cloud platforms, and enterprise technology providers serving millions of users.</p>
+                
+                <h3>Research & Education</h3>
+                <p>Protecting valuable research data, intellectual property, and academic systems for universities, nonprofits, and scientific organizations.</p>
+                
+                <h3>Manufacturing & Supply Chain</h3>
+                <p>Ensuring operational continuity and protecting proprietary designs, supply chain systems, and quality management data.</p>
+                
+                <h3>Retail & E-Commerce</h3>
+                <p>Maintaining online operations and protecting customer data during peak seasons and high-traffic events.</p>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p class="footer-text">
+            <strong>HealaGuard® - Enterprise Disaster Recovery & Multi-Cloud Backup Solutions</strong><br>
+            Serving Mid-Size to Fortune 500 Companies Nationwide<br>
+            Real-Time Replication | 99.99% Uptime | 24/7 Support<br>
+            Powered by Schober Consulting LLC © 2025 | <a href="mailto:dr@migratewithmatt.com">dr@migratewithmatt.com</a>
+        </p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

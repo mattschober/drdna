@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - HealaGuard® Enterprise Disaster Recovery Solutions</title>
+    <meta name="description" content="Frequently asked questions about HealaGuard's enterprise disaster recovery services, pricing, implementation, and support.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Menu */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo span {
+            color: #ef4444;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-links a.active {
+            color: #f97316;
+            background: rgba(249, 115, 22, 0.1);
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 120px 20px 60px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 60px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .faq-category h2 {
+            font-size: 2rem;
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(249, 115, 22, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .faq-item.active {
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: #3b82f6;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            margin-top: 1.5rem;
+        }
+
+        .faq-answer p {
+            line-height: 1.8;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1rem;
+        }
+
+        .faq-answer ul li {
+            padding: 0.5rem 0;
+            color: #e2e8f0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .faq-answer ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: rgba(59, 130, 246, 0.05);
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.95);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 2rem 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-text a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-text a:hover {
+            color: #f97316;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                flex-direction: column;
+                background: rgba(10, 14, 39, 0.98);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                padding: 2rem;
+                gap: 1rem;
+                transition: left 0.3s ease;
+                border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                padding: 1rem;
+                font-size: 1.1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-header p {
+                font-size: 1.2rem;
+            }
+
+            .faq-item {
+                padding: 1.5rem;
+            }
+
+            .faq-question {
+                font-size: 1.1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="index.html" class="nav-logo">Heal<span>a</span>Guard<sup style="font-size: 0.5em;">®</sup></a>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html" class="active">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find answers to common questions about HealaGuard's disaster recovery solutions</p>
+    </header>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            
+            <!-- General Questions -->
+            <div class="faq-category">
+                <h2>General Questions</h2>
+                
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        What is disaster recovery and why do I need it?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Disaster recovery (DR) is a comprehensive strategy and set of technologies that enable your organization to quickly recover IT systems, applications, and data after unexpected disruptions. These disruptions can include natural disasters, cyberattacks, hardware failures, human error, or power outages.</p>
+                        <p>Without proper disaster recovery, businesses face:</p>
+                        <ul>
+                            <li>Extended downtime leading to lost revenue</li>
+                            <li>Permanent data loss affecting operations</li>
+                            <li>Damage to customer trust and reputation</li>
+                            <li>Regulatory compliance violations and penalties</li>
+                            <li>Inability to meet contractual SLAs</li>
+                        </ul>
+                        <p>HealaGuard's disaster recovery solutions ensure your business can maintain operations and recover quickly from any disruption.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        What makes HealaGuard different from other disaster recovery providers?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>HealaGuard stands out through our combination of enterprise-grade technology and personalized service:</p>
+                        <ul>
+                            <li>99.99% uptime guarantee backed by SLAs</li>
+                            <li>Real-time replication with near-zero RPO</li>
+                            <li>Multi-cloud flexibility (AWS, Azure, Google Cloud)</li>
+                            <li>Annual readiness drills to test and improve your DR plan</li>
+                            <li>24/7 monitoring and support from certified specialists</li>
+                            <li>Customized solutions tailored to your specific needs</li>
+                            <li>Transparent pricing with no hidden fees</li>
+                        </ul>
+                        <p>We treat every client—whether Fortune 500 or mid-size enterprise—with the same level of dedication and expertise.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        Who are HealaGuard's typical clients?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We serve mid-size to Fortune 500 companies across various industries including:</p>
+                        <ul>
+                            <li>Healthcare organizations and research institutions</li>
+                            <li>Financial services and banking</li>
+                            <li>Technology companies and SaaS platforms</li>
+                            <li>Manufacturing and supply chain operations</li>
+                            <li>Retail and e-commerce businesses</li>
+                            <li>Nonprofits and educational institutions</li>
+                        </ul>
+                        <p>Our clients share a common need: mission-critical data protection and zero-tolerance for downtime.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Questions -->
+            <div class="faq-category">
+                <h2>Technical Questions</h2>
+                
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        What is real-time data replication?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Real-time data replication is the continuous synchronization of data from your primary systems to secondary backup locations. Unlike traditional backups that run on a schedule (hourly, daily), real-time replication captures every change as it happens.</p>
+                        <p>This provides several critical benefits:</p>
+                        <ul>
+                            <li>Near-zero Recovery Point Objective (RPO) - minimal to no data loss</li>
+                            <li>Instant failover capabilities when needed</li>
+                            <li>Always up-to-date backup copies</li>
+                            <li>Protection against ransomware and corruption</li>
+                        </ul>
+                        <p>HealaGuard's replication technology works at the block or byte level, ensuring efficiency and accuracy across all supported platforms.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        What is RPO and RTO?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>RPO (Recovery Point Objective)</strong> is the maximum amount of data you can afford to lose, measured in time. For example, an RPO of 15 minutes means you can lose up to 15 minutes of data in a disaster.</p>
+                        <p><strong>RTO (Recovery Time Objective)</strong> is the maximum amount of time it takes to restore your systems after a disaster. For example, an RTO of 1 hour means your systems must be operational within 60 minutes.</p>
+                        <p>HealaGuard delivers:</p>
+                        <ul>
+                            <li>RPO: Near-zero with real-time replication</li>
+                            <li>RTO: Minutes with automated failover</li>
+                        </ul>
+                        <p>We help you define appropriate RPO/RTO targets based on your business requirements and budget.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        Do you support multi-cloud environments?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! HealaGuard specializes in multi-cloud disaster recovery. We support:</p>
+                        <ul>
+                            <li>Amazon Web Services (AWS)</li>
+                            <li>Microsoft Azure</li>
+                            <li>Google Cloud Platform (GCP)</li>
+                            <li>On-premises data centers</li>
+                            <li>Hybrid cloud configurations</li>
+                        </ul>
+                        <p>You can replicate from any source to any destination, providing maximum flexibility and avoiding vendor lock-in. Our platform manages all replication and failover operations seamlessly across different cloud providers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        How does automated failover work?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our automated failover system continuously monitors your primary infrastructure for issues. When it detects a failure that meets your configured thresholds, it automatically:</p>
+                        <ul>
+                            <li>Verifies the failure is genuine (not a false alarm)</li>
+                            <li>Initiates failover to your backup systems</li>
+                            <li>Redirects traffic and updates DNS if needed</li>
+                            <li>Notifies your team of the failover event</li>
+                            <li>Monitors backup systems for proper operation</li>
+                        </ul>
+                        <p>You can choose between fully automatic failover or manual approval, depending on your preferences. Once your primary systems are restored, we can fail back automatically or on command.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Implementation & Support -->
+            <div class="faq-category">
+                <h2>Implementation & Support</h2>
+                
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        How long does implementation take?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Implementation timelines vary based on your environment's complexity:</p>
+                        <ul>
+                            <li><strong>Simple environments:</strong> 2-4 weeks</li>
+                            <li><strong>Standard enterprise:</strong> 4-8 weeks</li>
+                            <li><strong>Complex multi-cloud:</strong> 8-12 weeks</li>
+                        </ul>
+                        <p>Our implementation process includes:</p>
+                        <ul>
+                            <li>Discovery and assessment</li>
+                            <li>Solution design and architecture planning</li>
+                            <li>Infrastructure provisioning</li>
+                            <li>Replication configuration and testing</li>
+                            <li>Failover testing and validation</li>
+                            <li>Team training and documentation</li>
+                            <li>Go-live support</li>
+                        </ul>
+                        <p>We work closely with your team throughout the process to minimize disruption to your operations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        What level of support do you provide?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>HealaGuard provides comprehensive 24/7/365 enterprise support:</p>
+                        <ul>
+                            <li>Round-the-clock monitoring of your DR infrastructure</li>
+                            <li>Immediate response to critical alerts</li>
+                            <li>Direct access to certified DR specialists</li>
+                            <li>Regular health checks and optimization reviews</li>
+                            <li>Proactive notification of potential issues</li>
+                            <li>Assistance with failover procedures when needed</li>
+                        </ul>
+                        <p>Our support team includes cloud architects, security experts, and disaster recovery specialists with decades of combined experience.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        What are annual readiness drills?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Annual readiness drills are comprehensive disaster recovery exercises where we simulate real disaster scenarios to test your organization's response. These drills:</p>
+                        <ul>
+                            <li>Validate that your DR plan works as expected</li>
+                            <li>Train your team on proper procedures</li>
+                            <li>Identify gaps or weaknesses in your strategy</li>
+                            <li>Test communication and coordination protocols</li>
+                            <li>Measure actual RTO/RPO performance</li>
+                            <li>Generate compliance documentation</li>
+                        </ul>
+                        <p>After each drill, we provide a detailed report with findings and recommendations for improvement. This ensures your organization is truly prepared, not just theoretically protected.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security & Compliance -->
+            <div class="faq-category">
+                <h2>Security & Compliance</h2>
+                
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        How do you ensure data security?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Security is fundamental to everything we do at HealaGuard:</p>
+                        <ul>
+                            <li>End-to-end encryption for data in transit and at rest</li>
+                            <li>Multi-factor authentication (MFA) required</li>
+                            <li>Role-based access control (RBAC)</li>
+                            <li>Regular security audits and penetration testing</li>
+                            <li>Continuous vulnerability monitoring</li>
+                            <li>Isolated network architecture</li>
+                            <li>Comprehensive audit logging</li>
+                        </ul>
+                        <p>We treat your data with the same care and security we would demand for our own sensitive information.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        What compliance certifications do you have?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>HealaGuard maintains rigorous compliance standards:</p>
+                        <ul>
+                            <li><strong>SOC 2 Type II:</strong> Independently audited security controls</li>
+                            <li><strong>HIPAA:</strong> Healthcare data protection compliance</li>
+                            <li><strong>PCI DSS:</strong> Payment card industry standards (when applicable)</li>
+                        </ul>
+                        <p>We also support organizations with requirements for:</p>
+                        <ul>
+                            <li>GDPR (European data protection)</li>
+                            <li>CCPA (California privacy laws)</li>
+                            <li>Industry-specific regulations</li>
+                        </ul>
+                        <p>Our platform provides audit trails, compliance reporting, and documentation to support your regulatory requirements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing -->
+            <div class="faq-category">
+                <h2>Pricing & Billing</h2>
+                
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        How is HealaGuard priced?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our pricing is customized based on your specific needs and considers:</p>
+                        <ul>
+                            <li>Amount of data being protected</li>
+                            <li>Number of systems and applications</li>
+                            <li>Required RPO/RTO targets</li>
+                            <li>Cloud platform(s) being used</li>
+                            <li>Compliance requirements</li>
+                            <li>Level of support needed</li>
+                        </ul>
+                        <p>We believe in transparent, predictable pricing with no hidden fees. Every proposal includes a detailed breakdown of costs and services. Contact us for a free assessment and customized quote.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        Do you offer a free trial or assessment?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer complimentary disaster recovery readiness assessments for qualified organizations. During this assessment, we:</p>
+                        <ul>
+                            <li>Review your current backup and DR infrastructure</li>
+                            <li>Identify potential vulnerabilities and gaps</li>
+                            <li>Assess your actual vs. required RPO/RTO</li>
+                            <li>Provide recommendations for improvement</li>
+                            <li>Design a customized DR solution</li>
+                            <li>Deliver a detailed proposal with transparent pricing</li>
+                        </ul>
+                        <p>There's no obligation, and you'll gain valuable insights into your disaster recovery readiness regardless of whether you choose HealaGuard.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2>Still Have Questions?</h2>
+                <p>Our disaster recovery specialists are here to help. Get in touch for personalized answers.</p>
+                <a href="index.html#contact" class="cta-button">Contact Us</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p class="footer-text">
+            <strong>HealaGuard® - Enterprise Disaster Recovery & Multi-Cloud Backup Solutions</strong><br>
+            Serving Mid-Size to Fortune 500 Companies Nationwide<br>
+            Real-Time Replication | 99.99% Uptime | 24/7 Support<br>
+            Powered by Schober Consulting LLC © 2025 | <a href="mailto:dr@migratewithmatt.com">dr@migratewithmatt.com</a>
+        </p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // FAQ accordion toggle
+        function toggleFaq(element) {
+            // Close all other FAQ items
+            const allItems = document.querySelectorAll('.faq-item');
+            allItems.forEach(item => {
+                if (item !== element && item.classList.contains('active')) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle clicked item
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
