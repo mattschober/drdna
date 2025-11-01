@@ -620,6 +620,11 @@
             font-size: 0.95rem;
         }
 
+        /* HealaGuard branding - red 'a' */
+        .brand-name .red-a {
+            color: #ef4444;
+        }
+
         /* Partner Section */
         .partner-section {
             padding: 80px 20px;
@@ -957,7 +962,7 @@
     <script>
         // Video will autoplay and stop on last frame (no loop)
         
-        // Fade in DNA canvas when scrolling past hero section
+        // Fade in DNA canvas when scrolling past hero section, fade out at bottom
         const dnaCanvas = document.getElementById('dna-canvas');
         const videoHero = document.querySelector('.video-hero');
         
@@ -965,11 +970,41 @@
             const scrollY = window.pageYOffset;
             const heroHeight = videoHero.offsetHeight;
             
-            // Start fading in the DNA canvas after scrolling past the entire video hero section
-            if (scrollY > heroHeight * 0.8) {
-                dnaCanvas.classList.add('visible');
+            // Get document height and scroll position
+            const docHeight = Math.max(
+                document.body.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.clientHeight,
+                document.documentElement.scrollHeight,
+                document.documentElement.offsetHeight
+            );
+            const windowHeight = window.innerHeight;
+            const scrollPercentage = scrollY / (docHeight - windowHeight);
+            
+            // Fade in after scrolling past video hero (after 80% of hero)
+            const fadeInThreshold = heroHeight * 0.8;
+            
+            // Fade out when approaching bottom (start at 80% of page)
+            const fadeOutStart = 0.8;
+            const fadeOutEnd = 0.95;
+            
+            if (scrollY > fadeInThreshold) {
+                // Check if we're near the bottom
+                if (scrollPercentage >= fadeOutEnd) {
+                    // Completely hidden at very bottom
+                    dnaCanvas.style.opacity = '0';
+                } else if (scrollPercentage >= fadeOutStart) {
+                    // Fading out between 80% and 95%
+                    const fadeProgress = (scrollPercentage - fadeOutStart) / (fadeOutEnd - fadeOutStart);
+                    dnaCanvas.style.opacity = (1 - fadeProgress).toString();
+                } else {
+                    // Fully visible in middle section
+                    dnaCanvas.classList.add('visible');
+                    dnaCanvas.style.opacity = '1';
+                }
             } else {
                 dnaCanvas.classList.remove('visible');
+                dnaCanvas.style.opacity = '0';
             }
         });
     
@@ -986,7 +1021,7 @@
     <!-- Features Section -->
     <section class="section" aria-labelledby="features-heading">
         <div class="section-content">
-            <h2 id="features-heading">Why Choose HealaGuard for Enterprise Disaster Recovery?</h2>
+            <h2 id="features-heading">Why Choose Heal<span style="color: #ef4444;">a</span>Guard for Enterprise Disaster Recovery?</h2>
             <div class="features">
                 <article class="feature-card">
                     <div class="feature-icon" aria-hidden="true">🛡️</div>
@@ -1019,7 +1054,7 @@
             <div class="testimonials">
                 <article class="testimonial-card">
                     <div class="quote-icon" aria-hidden="true">"</div>
-                    <p class="testimonial-text">HealaGuard transformed our disaster recovery strategy. Their annual readiness drills identified gaps we never knew existed, and their instant failover capability has saved us from potential million-dollar losses. The peace of mind is invaluable.</p>
+                    <p class="testimonial-text">Heal<span style="color: #ef4444;">a</span>Guard transformed our disaster recovery strategy. Their annual readiness drills identified gaps we never knew existed, and their instant failover capability has saved us from potential million-dollar losses. The peace of mind is invaluable.</p>
                     <div class="testimonial-author">
                         <div class="author-name">Sarah Mitchell</div>
                         <div class="author-title">Cloud Delivery Lead, Fortune 500 Technology Company</div>
@@ -1027,7 +1062,7 @@
                 </article>
                 <article class="testimonial-card">
                     <div class="quote-icon" aria-hidden="true">"</div>
-                    <p class="testimonial-text">As a nonprofit focused on cancer research, protecting patient data and research continuity is mission-critical. HealaGuard's team doesn't just provide a service—they're true partners in our mission. Their 24/7 support gives our organization confidence to focus on what matters most.</p>
+                    <p class="testimonial-text">As a nonprofit focused on cancer research, protecting patient data and research continuity is mission-critical. Heal<span style="color: #ef4444;">a</span>Guard's team doesn't just provide a service—they're true partners in our mission. Their 24/7 support gives our organization confidence to focus on what matters most.</p>
                     <div class="testimonial-author">
                         <div class="author-name">Dr. Marcus Chen</div>
                         <div class="author-title">PMO Director, National Cancer Research Foundation</div>
@@ -1041,7 +1076,7 @@
     <section class="partner-section" aria-labelledby="partners-heading">
         <div class="partner-content">
             <h2 id="partners-heading">Trusted Cloud Partners</h2>
-            <p>HealaGuard is proud to partner with the world's leading cloud providers to deliver enterprise-grade disaster recovery solutions across multiple platforms.</p>
+            <p>Heal<span style="color: #ef4444;">a</span>Guard is proud to partner with the world's leading cloud providers to deliver enterprise-grade disaster recovery solutions across multiple platforms.</p>
             
             <div class="partner-logos">
                 <div class="partner-logo">
@@ -1182,17 +1217,21 @@
             
             const docHeight = getDocumentHeight();
             
-            // Color fade: original -> grey (50% to 70%)
-            const colorFadeStart = docHeight * 0.5;
-            const colorFadeToGrey = docHeight * 0.7;
+            // Opacity fade in: fade in from transparent at top (0% to 15%)
+            const opacityFadeInStart = 0;
+            const opacityFadeInEnd = docHeight * 0.15;
             
-            // Color fade: grey -> black (70% to 85%)
-            const greyToBlackStart = docHeight * 0.7;
-            const greyToBlackEnd = docHeight * 0.85;
+            // Color fade: pitch black -> grey (15% to 30%)
+            const blackToGreyStart = docHeight * 0.15;
+            const blackToGreyEnd = docHeight * 0.3;
             
-            // Opacity fade: fade out completely (85% to 100%)
-            const opacityFadeStart = docHeight * 0.85;
-            const opacityFadeEnd = docHeight * 1.0;
+            // Color fade: grey -> full color (30% to 50%)
+            const greyToColorStart = docHeight * 0.3;
+            const greyToColorEnd = docHeight * 0.5;
+            
+            // Opacity fade out at very bottom (85% to 100%)
+            const opacityFadeOutStart = docHeight * 0.85;
+            const opacityFadeOutEnd = docHeight * 1.0;
             
             // Draw connecting lines and hexagons
             for (let i = 0; i < pairCount; i++) {
@@ -1218,36 +1257,48 @@
                 // Calculate absolute position in document
                 const absoluteY = y + scrollProgress * 0.5;
                 
-                // Determine the color based on position
-                let blueColor = '#3b82f6';
-                let orangeColor = '#f97316';
-                let lineColor = '#64748b';
+                // Determine the color based on position (REVERSED: black -> grey -> color)
+                let blueColor = '#000000'; // Start black
+                let orangeColor = '#000000';
+                let lineColor = '#000000';
                 
-                // Phase 1: Original colors to grey (50% to 70%)
-                if (absoluteY >= colorFadeStart && absoluteY < colorFadeToGrey) {
-                    const factor = (absoluteY - colorFadeStart) / (colorFadeToGrey - colorFadeStart);
-                    blueColor = interpolateColor('#3b82f6', '#64748b', '#64748b', factor);
-                    orangeColor = interpolateColor('#f97316', '#64748b', '#64748b', factor);
-                    lineColor = interpolateColor('#64748b', '#404040', '#404040', factor);
-                }
-                // Phase 2: Grey to black (70% to 85%)
-                else if (absoluteY >= greyToBlackStart && absoluteY < greyToBlackEnd) {
-                    const factor = (absoluteY - greyToBlackStart) / (greyToBlackEnd - greyToBlackStart);
-                    blueColor = interpolateColor('#64748b', '#000000', '#000000', factor);
-                    orangeColor = interpolateColor('#64748b', '#000000', '#000000', factor);
-                    lineColor = interpolateColor('#404040', '#000000', '#000000', factor);
-                }
-                // Phase 3: Black (85% onwards)
-                else if (absoluteY >= greyToBlackEnd) {
+                // Phase 1: Pitch black at top (0% to 15%)
+                if (absoluteY < blackToGreyStart) {
                     blueColor = '#000000';
                     orangeColor = '#000000';
                     lineColor = '#000000';
                 }
+                // Phase 2: Black to grey (15% to 30%)
+                else if (absoluteY >= blackToGreyStart && absoluteY < blackToGreyEnd) {
+                    const factor = (absoluteY - blackToGreyStart) / (blackToGreyEnd - blackToGreyStart);
+                    blueColor = interpolateColor('#000000', '#64748b', '#64748b', factor);
+                    orangeColor = interpolateColor('#000000', '#64748b', '#64748b', factor);
+                    lineColor = interpolateColor('#000000', '#404040', '#404040', factor);
+                }
+                // Phase 3: Grey to full color (30% to 50%)
+                else if (absoluteY >= greyToColorStart && absoluteY < greyToColorEnd) {
+                    const factor = (absoluteY - greyToColorStart) / (greyToColorEnd - greyToColorStart);
+                    blueColor = interpolateColor('#64748b', '#3b82f6', '#3b82f6', factor);
+                    orangeColor = interpolateColor('#64748b', '#f97316', '#f97316', factor);
+                    lineColor = interpolateColor('#404040', '#64748b', '#64748b', factor);
+                }
+                // Phase 4: Full vibrant colors (50% onwards)
+                else if (absoluteY >= greyToColorEnd) {
+                    blueColor = '#3b82f6';
+                    orangeColor = '#f97316';
+                    lineColor = '#64748b';
+                }
                 
-                // Calculate opacity fade at the very bottom (85% to 100%)
+                // Calculate opacity - fade in at top, fade out at bottom
                 let opacityMultiplier = 1;
-                if (absoluteY >= opacityFadeStart) {
-                    opacityMultiplier = Math.max(0, 1 - ((absoluteY - opacityFadeStart) / (opacityFadeEnd - opacityFadeStart)));
+                
+                // Fade in from transparent at very top (0% to 15%)
+                if (absoluteY < opacityFadeInEnd) {
+                    opacityMultiplier = Math.max(0, (absoluteY - opacityFadeInStart) / (opacityFadeInEnd - opacityFadeInStart));
+                }
+                // Fade out at very bottom (85% to 100%)
+                else if (absoluteY >= opacityFadeOutStart) {
+                    opacityMultiplier = Math.max(0, 1 - ((absoluteY - opacityFadeOutStart) / (opacityFadeOutEnd - opacityFadeOutStart)));
                 }
                 
                 // Apply opacity multiplier to base opacity
@@ -1391,7 +1442,7 @@
 
     <footer role="contentinfo">
         <p class="footer-text">
-            <strong>HealaGuard® - Enterprise Disaster Recovery & Multi-Cloud Backup Solutions</strong><br>
+            <strong>Heal<span style="color: #ef4444;">a</span>Guard® - Enterprise Disaster Recovery & Multi-Cloud Backup Solutions</strong><br>
             Serving Mid-Size to Fortune 500 Companies Nationwide<br>
             Real-Time Replication | 99.99% Uptime | 24/7 Support<br>
             Powered by Schober Consulting LLC © 2025 | <a href="mailto:dr@migratewithmatt.com">dr@migratewithmatt.com</a>
