@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealaGuard - Advanced Disaster Recovery Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .video-hero {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 39, 0.4);
+            z-index: 2;
+        }
+
+        .video-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .video-content h1 {
+            font-size: 6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-content .tagline {
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .consultation-text {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 10px 40px rgba(59, 130, 246, 0.6);
+            }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
+            animation: none;
+        }
+
+        /* DNA Helix Canvas */
+        #dna-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #3b82f6;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(249, 115, 22, 0.5);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #f97316;
+        }
+
+        p {
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(249, 115, 22, 0.5);
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: #3b82f6;
+            line-height: 1;
+            margin-bottom: 1rem;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e2e8f0;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            border-top: 1px solid rgba(148, 163, 184, 0.2);
+            padding-top: 1.5rem;
+        }
+
+        .author-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f97316;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-title {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: rgba(10, 14, 39, 0.95);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 2rem 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-text a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-text a:hover {
+            color: #f97316;
+        }
+
+        /* Partner Inquiry Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .close-btn:hover {
+            color: #f97316;
+        }
+
+        .modal-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+
+        .modal-content p {
+            margin-bottom: 2rem;
+            color: #cbd5e1;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 10px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
+        }
+
+        .partner-link {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .partner-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+
+            .video-content h1 {
+                font-size: 3rem;
+            }
+
+            .video-content .tagline {
+                font-size: 1.2rem;
+            }
+
+            .partner-link {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .modal-content {
+                padding: 2rem;
+            }
+
+            .modal-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="dna-canvas"></canvas>
+
+    <div class="video-hero">
+        <video autoplay muted loop playsinline>
+            <source src="your-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+        <div class="video-content">
+            <h1>Heal<span style="color: #ef4444;">a</span>Guard<sup style="font-size: 0.4em; vertical-align: super;">®</sup></h1>
+            <p class="tagline">Your Company DNA is on the Line</p>
+            <p class="tagline" style="font-size: 1.4rem; margin-top: 0.5rem;">Secure Your Data's Future with Enterprise-Grade Disaster Recovery</p>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h2 style="font-size: 2.5rem; color: #ffffff; margin-bottom: 2rem;">Ready to Protect Your Business?</h2>
+            <button class="cta-button">Free Readiness Assessment</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-content">
+            <h2>Why Choose HealaGuard?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>99.99% Uptime</h3>
+                    <p>Industry-leading reliability with redundant infrastructure across multiple data centers ensuring your business never stops.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Recovery</h3>
+                    <p>Restore your critical systems in minutes, not hours. Our advanced replication technology keeps you ahead of disasters.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Military-Grade Security</h3>
+                    <p>End-to-end encryption, compliance certifications, and continuous monitoring protect your most valuable asset: data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Annual Readiness Drills</h3>
+                    <p>Comprehensive disaster recovery simulations conducted yearly to test your response protocols, train your team, and ensure business continuity readiness.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-content">
+            <h2>Trusted by Industry Leaders</h2>
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">HealaGuard transformed our disaster recovery strategy. Their annual readiness drills identified gaps we never knew existed, and their instant failover capability has saved us from potential million-dollar losses. The peace of mind is invaluable.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Sarah Mitchell</div>
+                        <div class="author-title">Cloud Delivery Lead, Fortune 500 Technology Company</div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">As a nonprofit focused on cancer research, protecting patient data and research continuity is mission-critical. HealaGuard's team doesn't just provide a service—they're true partners in our mission. Their 24/7 support gives our organization confidence to focus on what matters most.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Dr. Marcus Chen</div>
+                        <div class="author-title">PMO Director, National Cancer Research Foundation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-content">
+            <h2>Advanced Features</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Automated Failover</h3>
+                    <p>Seamless transition to backup systems without manual intervention. Your business continuity is our priority.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-Time Monitoring</h3>
+                    <p>Comprehensive dashboard with live insights into replication status, system health, and recovery readiness.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global Infrastructure</h3>
+                    <p>Strategically located data centers worldwide ensure low latency and compliance with regional data regulations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('dna-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height, centerX, centerY;
+        let scrollRotation = 0;
+        
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            centerX = width / 2;
+            centerY = height / 2;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Hexagon drawing function
+        function drawHexagon(x, y, size, color, opacity = 1) {
+            ctx.save();
+            ctx.globalAlpha = opacity;
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+                const angle = (Math.PI / 3) * i;
+                const hx = x + size * Math.cos(angle);
+                const hy = y + size * Math.sin(angle);
+                if (i === 0) {
+                    ctx.moveTo(hx, hy);
+                } else {
+                    ctx.lineTo(hx, hy);
+                }
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.restore();
+        }
+        
+        // DNA Helix parameters
+        const helixHeight = 2000;
+        const helixWidth = 300;
+        const hexSize = 15;
+        const pairCount = 40;
+        const rotationsPerScroll = 0.5; // Reduced to 1/4 of original speed (was 2)
+        
+        function drawDNA() {
+            ctx.clearRect(0, 0, width, height);
+            
+            const scrollProgress = window.pageYOffset;
+            scrollRotation = (scrollProgress / 500) * Math.PI * rotationsPerScroll;
+            
+            // Draw connecting lines and hexagons
+            for (let i = 0; i < pairCount; i++) {
+                const t = i / pairCount;
+                const y = (t * helixHeight) - scrollProgress * 0.5;
+                
+                // Skip if outside viewport
+                if (y < -100 || y > height + 100) continue;
+                
+                const angle1 = t * Math.PI * 8 + scrollRotation;
+                const angle2 = angle1 + Math.PI;
+                
+                const x1 = centerX + Math.cos(angle1) * helixWidth;
+                const z1 = Math.sin(angle1) * helixWidth;
+                
+                const x2 = centerX + Math.cos(angle2) * helixWidth;
+                const z2 = Math.sin(angle2) * helixWidth;
+                
+                // Calculate opacity based on z-depth (closer = more opaque)
+                const opacity1 = (z1 + helixWidth) / (helixWidth * 2) * 0.7 + 0.3;
+                const opacity2 = (z2 + helixWidth) / (helixWidth * 2) * 0.7 + 0.3;
+                
+                // Draw connecting line between hexagons
+                ctx.save();
+                ctx.globalAlpha = Math.min(opacity1, opacity2) * 0.4;
+                ctx.strokeStyle = '#64748b';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(x1, y);
+                ctx.lineTo(x2, y);
+                ctx.stroke();
+                ctx.restore();
+                
+                // Draw hexagons (blue strand in front, orange in back)
+                if (z1 > z2) {
+                    drawHexagon(x2, y, hexSize, '#f97316', opacity2);
+                    drawHexagon(x1, y, hexSize, '#3b82f6', opacity1);
+                } else {
+                    drawHexagon(x1, y, hexSize, '#3b82f6', opacity1);
+                    drawHexagon(x2, y, hexSize, '#f97316', opacity2);
+                }
+            }
+        }
+        
+        // Animation loop
+        function animate() {
+            drawDNA();
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Redraw on scroll
+        window.addEventListener('scroll', () => {
+            drawDNA();
+        });
+    </script>
+
+    <!-- Partner Inquiry Button -->
+    <button class="partner-link" onclick="openModal()">Partner With Us</button>
+
+    <!-- Partner Inquiry Modal -->
+    <div id="partnerModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h2>Partner Inquiry</h2>
+            <p>Interested in partnering with HealaGuard? Let's discuss how we can work together.</p>
+            <form id="partnerForm" onsubmit="sendEmail(event)">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required placeholder="Tell us about your partnership interest..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('partnerModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('partnerModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('partnerModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        function sendEmail(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const company = document.getElementById('company').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            const subject = encodeURIComponent('HealaGuard Partner Inquiry from ' + name);
+            const body = encodeURIComponent(
+                'Name: ' + name + '\n' +
+                'Company: ' + company + '\n' +
+                'Email: ' + email + '\n\n' +
+                'Message:\n' + message
+            );
+            
+            window.location.href = 'mailto:dr@migratewithmatt.com?subject=' + subject + '&body=' + body;
+            
+            // Close modal after a brief delay
+            setTimeout(() => {
+                closeModal();
+                document.getElementById('partnerForm').reset();
+            }, 500);
+        }
+    </script>
+
+    <footer>
+        <p class="footer-text">Powered by Schober Consulting LLC &copy; 2025</p>
+    </footer>
+</body>
+</html>
