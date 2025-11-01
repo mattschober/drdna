@@ -1226,22 +1226,22 @@
                 // Phase 1: Original colors to grey (50% to 70%)
                 if (absoluteY >= colorFadeStart && absoluteY < colorFadeToGrey) {
                     const factor = (absoluteY - colorFadeStart) / (colorFadeToGrey - colorFadeStart);
-                    blueColor = interpolateColor('#3b82f6', '#64748b', '#64748b', factor * 0.5);
-                    orangeColor = interpolateColor('#f97316', '#64748b', '#64748b', factor * 0.5);
-                    lineColor = interpolateColor('#64748b', '#505050', '#505050', factor * 0.5);
+                    blueColor = interpolateColor('#3b82f6', '#64748b', '#64748b', factor);
+                    orangeColor = interpolateColor('#f97316', '#64748b', '#64748b', factor);
+                    lineColor = interpolateColor('#64748b', '#404040', '#404040', factor);
                 }
                 // Phase 2: Grey to black (70% to 85%)
                 else if (absoluteY >= greyToBlackStart && absoluteY < greyToBlackEnd) {
                     const factor = (absoluteY - greyToBlackStart) / (greyToBlackEnd - greyToBlackStart);
-                    blueColor = interpolateColor('#64748b', '#1a1a1a', '#1a1a1a', factor * 0.5);
-                    orangeColor = interpolateColor('#64748b', '#1a1a1a', '#1a1a1a', factor * 0.5);
-                    lineColor = interpolateColor('#505050', '#1a1a1a', '#1a1a1a', factor * 0.5);
+                    blueColor = interpolateColor('#64748b', '#000000', '#000000', factor);
+                    orangeColor = interpolateColor('#64748b', '#000000', '#000000', factor);
+                    lineColor = interpolateColor('#404040', '#000000', '#000000', factor);
                 }
                 // Phase 3: Black (85% onwards)
                 else if (absoluteY >= greyToBlackEnd) {
-                    blueColor = '#1a1a1a';
-                    orangeColor = '#1a1a1a';
-                    lineColor = '#1a1a1a';
+                    blueColor = '#000000';
+                    orangeColor = '#000000';
+                    lineColor = '#000000';
                 }
                 
                 // Calculate opacity fade at the very bottom (85% to 100%)
