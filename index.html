@@ -196,6 +196,12 @@
             align-items: center;
         }
 
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
         .nav-logo {
             font-size: 1.5rem;
             font-weight: 700;
@@ -207,6 +213,31 @@
 
         .nav-logo span {
             color: #ef4444;
+        }
+
+        .powered-by {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            padding-left: 1.5rem;
+            border-left: 1px solid rgba(148, 163, 184, 0.3);
+        }
+
+        .powered-by-text {
+            white-space: nowrap;
+        }
+
+        .powered-by-logo {
+            height: 24px;
+            width: auto;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .powered-by-logo:hover {
+            opacity: 1;
         }
 
         .nav-links {
@@ -249,6 +280,14 @@
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
+            }
+
+            .nav-left {
+                gap: 0.5rem;
+            }
+
+            .powered-by {
+                display: none; /* Hide on mobile to save space */
             }
 
             .menu-toggle {
@@ -754,6 +793,8 @@
             border: 1px solid rgba(59, 130, 246, 0.3);
             max-width: 500px;
             width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
@@ -899,11 +940,33 @@
             }
 
             .modal-content {
-                padding: 2rem;
+                padding: 1.5rem;
+                width: 95%;
+                max-height: 90vh;
+                overflow-y: auto;
             }
 
             .modal-content h2 {
                 font-size: 1.5rem;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.6rem;
+                font-size: 0.95rem;
+            }
+
+            .form-group textarea {
+                min-height: 100px;
+            }
+
+            .submit-btn {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
             }
 
             .seo-content h2 {
@@ -932,7 +995,13 @@
 <body>
     <!-- Navigation Menu -->
     <nav>
-        <a href="index.html" class="nav-logo">Heal<span>a</span>Guard<sup style="font-size: 0.5em;">®</sup></a>
+        <div class="nav-left">
+            <a href="index.html" class="nav-logo">Heal<span style="color: #ef4444;">a</span>Guard<sup style="font-size: 0.5em;">®</sup></a>
+            <div class="powered-by">
+                <span class="powered-by-text">powered by Schober Consulting LLC</span>
+                <img src="schober-logo.png" alt="Schober Consulting LLC" class="powered-by-logo">
+            </div>
+        </div>
         <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html" class="active">Home</a></li>
@@ -953,7 +1022,7 @@
         </div>
         <div class="video-container">
             <video id="heroVideo" autoplay muted playsinline aria-label="Background video showing disaster recovery infrastructure">
-                <source src="https://github.com/mattschober/drdna/raw/main/budding-healaguard.mp4" type="video/mp4">
+                <source src="https://github.com/mattschober/drdna/raw/main/Once_in_a_202511010054_ixc0m.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -1193,10 +1262,22 @@
         
         // DNA Helix parameters - increased to go almost to bottom
         const helixHeight = 8000; // Much longer to extend down page
-        const helixWidth = 200; // Reduced from 300 to 200 for tighter spiral with more margin
+        let helixWidth = 200; // Default width for desktop
         const hexSize = 15;
         const pairCount = 100; // More pairs for longer helix
         const rotationsPerScroll = 0.5;
+        
+        // Adjust helix width for mobile devices
+        function updateHelixWidth() {
+            if (window.innerWidth <= 768) {
+                helixWidth = 120; // Narrower on mobile - more margin
+            } else {
+                helixWidth = 200; // Standard width on desktop
+            }
+        }
+        
+        updateHelixWidth();
+        window.addEventListener('resize', updateHelixWidth);
         
         // Get document height to calculate fade
         function getDocumentHeight() {
