@@ -267,6 +267,22 @@
             transform: translate(-50%, -50%);
             object-fit: cover;
             z-index: 1;
+            transition: all 0.3s ease-out;
+        }
+
+        .video-hero.scrolled video {
+            transform: translate(-50%, -50%) scale(0.3) rotate(360deg);
+            opacity: 0;
+            filter: blur(20px) brightness(1.5);
+        }
+
+        .video-hero.scrolled .video-overlay {
+            opacity: 0;
+        }
+
+        .video-hero.scrolled .video-content {
+            opacity: 0;
+            transform: scale(0.5);
         }
 
         .video-overlay {
@@ -277,6 +293,7 @@
             height: 100%;
             background: rgba(10, 14, 39, 0.4);
             z-index: 2;
+            transition: opacity 0.5s ease-out;
         }
 
         .video-content {
@@ -285,6 +302,7 @@
             text-align: center;
             color: white;
             padding: 0 20px;
+            transition: all 0.5s ease-out;
         }
 
         .video-content h1 {
@@ -378,6 +396,12 @@
             height: 100%;
             z-index: 1;
             pointer-events: none;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+
+        #dna-canvas.visible {
+            opacity: 1;
         }
 
         .section {
@@ -812,6 +836,29 @@
         setTimeout(function() {
             document.getElementById('heroVideo').play();
         }, 1000);
+
+        // Handle video crumble transition on scroll
+        const videoHero = document.querySelector('.video-hero');
+        const dnaCanvas = document.getElementById('dna-canvas');
+        let lastScrollY = 0;
+        
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            const heroHeight = videoHero.offsetHeight;
+            
+            // Calculate scroll progress (0 to 1) through the hero section
+            const scrollProgress = Math.min(scrollY / (heroHeight * 0.5), 1);
+            
+            if (scrollProgress > 0.1) {
+                videoHero.classList.add('scrolled');
+                dnaCanvas.classList.add('visible');
+            } else {
+                videoHero.classList.remove('scrolled');
+                dnaCanvas.classList.remove('visible');
+            }
+            
+            lastScrollY = scrollY;
+        });
     </script>
 
     <!-- CTA Section -->
