@@ -222,13 +222,15 @@
             text-decoration: none;
             font-size: 1rem;
             font-weight: 500;
+            transition: color 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 8px;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #f97316;
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
         }
 
         .nav-links a.active {
@@ -281,15 +283,36 @@
 
         .video-hero {
             width: 100%;
-            min-height: 100vh;
+            height: 100vh;
             position: relative;
             overflow: hidden;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 120px 20px 60px;
             margin-top: 0;
+        }
+
+        .video-hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 39, 0.4);
+            z-index: 2;
         }
 
         .video-content {
@@ -298,25 +321,6 @@
             text-align: center;
             color: white;
             padding: 0 20px;
-            margin-bottom: 3rem;
-        }
-
-        .video-container {
-            position: relative;
-            z-index: 3;
-            max-width: 700px;
-            width: 90%;
-            margin: 0 auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .video-container video {
-            width: 100%;
-            height: auto;
-            display: block;
         }
 
         .video-content h1 {
@@ -620,84 +624,6 @@
             font-size: 0.95rem;
         }
 
-        /* Partner Section */
-        .partner-section {
-            padding: 80px 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .partner-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .partner-content h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #3b82f6;
-        }
-
-        .partner-content p {
-            font-size: 1.2rem;
-            color: #94a3b8;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .partner-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-            margin-top: 3rem;
-        }
-
-        .partner-logo {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 3rem 4rem;
-            border-radius: 20px;
-            border: 2px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.3s ease;
-            min-width: 280px;
-        }
-
-        .partner-logo:hover {
-            transform: translateY(-10px);
-            border-color: rgba(249, 115, 22, 0.5);
-            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
-        }
-
-        .partner-name {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .aws-logo {
-            color: #FF9900;
-        }
-
-        .microsoft-logo {
-            color: #00A4EF;
-        }
-
-        .partner-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-top: 1rem;
-        }
-
         footer {
             background: rgba(10, 14, 39, 0.95);
             border-top: 1px solid rgba(59, 130, 246, 0.2);
@@ -878,12 +804,7 @@
             }
 
             .video-content .tagline {
-                font-size: 1.1rem;
-            }
-
-            .video-container {
-                max-width: 100%;
-                border-radius: 10px;
+                font-size: 1.2rem;
             }
 
             .partner-link {
@@ -908,19 +829,6 @@
             .seo-content h3 {
                 font-size: 1.5rem;
             }
-
-            .partner-logos {
-                gap: 2rem;
-            }
-
-            .partner-logo {
-                min-width: 200px;
-                padding: 2rem 3rem;
-            }
-
-            .partner-name {
-                font-size: 2rem;
-            }
         }
     </style>
 </head>
@@ -941,16 +849,15 @@
 
     <!-- Hero Section with Semantic HTML -->
     <header class="video-hero" role="banner">
+        <video id="heroVideo" autoplay muted playsinline aria-label="Background video showing disaster recovery infrastructure">
+            <source src="https://github.com/mattschober/drdna/raw/main/Once_in_a_202511010054_ixc0m.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay" aria-hidden="true"></div>
         <div class="video-content">
             <h1>Heal<span style="color: #ef4444;">a</span>Guard<sup style="font-size: 0.4em; vertical-align: super;">®</sup></h1>
             <p class="tagline">Your Company DNA is on the Line</p>
             <p class="tagline" style="font-size: 1.4rem; margin-top: 0.5rem;">Secure Your Data's Future with Enterprise-Grade Disaster Recovery</p>
-        </div>
-        <div class="video-container">
-            <video id="heroVideo" autoplay muted playsinline aria-label="Background video showing disaster recovery infrastructure">
-                <source src="https://github.com/mattschober/drdna/raw/main/Once_in_a_202511010054_ixc0m.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
         </div>
     </header>
 
@@ -965,8 +872,8 @@
             const scrollY = window.pageYOffset;
             const heroHeight = videoHero.offsetHeight;
             
-            // Start fading in the DNA canvas after scrolling past the entire video hero section
-            if (scrollY > heroHeight * 0.8) {
+            // Start fading in the DNA canvas after scrolling 20% through the hero
+            if (scrollY > heroHeight * 0.2) {
                 dnaCanvas.classList.add('visible');
             } else {
                 dnaCanvas.classList.remove('visible');
@@ -1037,25 +944,6 @@
         </div>
     </section>
 
-    <!-- Partner Section -->
-    <section class="partner-section" aria-labelledby="partners-heading">
-        <div class="partner-content">
-            <h2 id="partners-heading">Trusted Cloud Partners</h2>
-            <p>HealaGuard is proud to partner with the world's leading cloud providers to deliver enterprise-grade disaster recovery solutions across multiple platforms.</p>
-            
-            <div class="partner-logos">
-                <div class="partner-logo">
-                    <div class="partner-name aws-logo">AWS</div>
-                    <div class="partner-badge">Official Partner</div>
-                </div>
-                <div class="partner-logo">
-                    <div class="partner-name microsoft-logo">Microsoft</div>
-                    <div class="partner-badge">Certified Partner</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Advanced Features Section -->
     <section class="section" aria-labelledby="advanced-features-heading">
         <div class="section-content">
@@ -1080,6 +968,57 @@
         </div>
     </section>
 
+    <!-- SEO-Rich Content Section -->
+    <section class="seo-content" aria-labelledby="seo-content-heading">
+        <div class="seo-content-inner">
+            <h2 id="seo-content-heading">Enterprise Disaster Recovery Solutions</h2>
+            
+            <p>HealaGuard is a premier provider of enterprise-grade disaster recovery and real-time data replication services. Serving mid-size to Fortune 500 companies nationwide, we specialize in multi-cloud backup solutions that ensure your business never experiences downtime.</p>
+            
+            <h3>What is Enterprise Disaster Recovery?</h3>
+            <p>Enterprise disaster recovery (DR) is a comprehensive IT continuity strategy that enables organizations to quickly recover critical business systems and data after disruptions. Whether facing natural disasters, cyberattacks, hardware failures, or human error, a robust disaster recovery plan ensures business operations continue with minimal interruption. HealaGuard's real-time replication technology provides continuous data protection across multi-cloud environments including AWS, Microsoft Azure, and Google Cloud Platform.</p>
+            
+            <h3>Real-Time Data Replication for Business Continuity</h3>
+            <p>Real-time data replication is the cornerstone of modern enterprise disaster recovery. Unlike traditional backup solutions that create periodic snapshots, real-time replication continuously synchronizes data between primary and secondary systems. This approach virtually eliminates data loss (achieving RPO near zero) and enables instant failover capabilities. For mid-size and Fortune 500 companies, this means your business can withstand any disruption without losing critical transactions or customer data.</p>
+            
+            <h3>Multi-Cloud Disaster Recovery Strategy</h3>
+            <p>Modern enterprises require flexibility and redundancy that single-cloud solutions cannot provide. HealaGuard's multi-cloud disaster recovery approach distributes your data and workloads across multiple cloud providers and geographic regions. This strategy offers several critical advantages:</p>
+            
+            <ul>
+                <li><strong>Vendor Independence:</strong> Avoid vendor lock-in by maintaining disaster recovery capabilities across AWS, Azure, Google Cloud, and private data centers</li>
+                <li><strong>Geographic Redundancy:</strong> Protect against regional outages by replicating data across multiple continents and availability zones</li>
+                <li><strong>Cost Optimization:</strong> Leverage the most cost-effective storage and compute resources from different cloud providers</li>
+                <li><strong>Compliance Flexibility:</strong> Meet data residency requirements by storing copies in specific geographic locations</li>
+                <li><strong>Performance Optimization:</strong> Serve users from the closest data center while maintaining backup copies elsewhere</li>
+            </ul>
+            
+            <h3>Why Companies Choose HealaGuard</h3>
+            <p>As a disaster recovery provider, HealaGuard understands the unique challenges facing businesses nationwide. From healthcare organizations requiring HIPAA compliance to financial services firms needing SOC 2 certification, we provide tailored solutions that meet the most stringent enterprise requirements. Our nationwide infrastructure means you get personalized service backed by enterprise-scale reliability.</p>
+            
+            <h3>Industries We Serve</h3>
+            <p>HealaGuard provides specialized disaster recovery solutions for:</p>
+            <ul>
+                <li><strong>Healthcare Organizations:</strong> HIPAA-compliant backup and recovery for patient records, medical imaging, and research data</li>
+                <li><strong>Financial Services:</strong> SOC 2 certified disaster recovery meeting regulatory requirements for banks, investment firms, and insurance companies</li>
+                <li><strong>Technology Companies:</strong> High-performance replication for SaaS platforms, software development, and Fortune 500 technology enterprises</li>
+                <li><strong>Research Institutions:</strong> Protect valuable research data for universities, nonprofits, and scientific organizations</li>
+                <li><strong>Manufacturing:</strong> Ensure supply chain continuity and protect intellectual property for mid-size to large manufacturers</li>
+                <li><strong>Retail & E-commerce:</strong> Maintain online operations and protect customer data during peak seasons</li>
+            </ul>
+            
+            <h3>Annual Disaster Recovery Readiness Drills</h3>
+            <p>Testing is crucial for effective disaster recovery. HealaGuard conducts comprehensive annual readiness drills that simulate real disaster scenarios. These exercises identify potential weaknesses in your recovery plan, train your IT team on proper procedures, and ensure your entire organization understands their role in business continuity. Our disaster recovery specialists work with your team to create realistic scenarios, document results, and implement improvements.</p>
+            
+            <h3>24/7 Enterprise Support</h3>
+            <p>Disasters don't wait for business hours. HealaGuard provides round-the-clock monitoring and support. Our enterprise support team includes certified disaster recovery specialists, cloud architects, and security experts who respond immediately to any issues. Whether you need assistance with failover procedures, system recovery, or disaster recovery planning, our team is always available.</p>
+            
+            <h3>Get Started with HealaGuard</h3>
+            <p>Protecting your enterprise data starts with understanding your current disaster recovery readiness. HealaGuard offers complimentary disaster recovery assessments for mid-size to Fortune 500 companies nationwide. Our specialists will evaluate your current backup infrastructure, identify potential vulnerabilities, and design a customized multi-cloud disaster recovery solution tailored to your business requirements.</p>
+            
+            <p><strong>Contact HealaGuard today to schedule your free disaster recovery readiness assessment and ensure your business is protected against any disruption.</strong></p>
+        </div>
+    </section>
+
     <script>
         const canvas = document.getElementById('dna-canvas');
         const ctx = canvas.getContext('2d');
@@ -1097,7 +1036,7 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
         
-        // Hexagon drawing function with color parameter
+        // Hexagon drawing function
         function drawHexagon(x, y, size, color, opacity = 1) {
             ctx.save();
             ctx.globalAlpha = opacity;
@@ -1121,78 +1060,18 @@
             ctx.restore();
         }
         
-        // Helper function to interpolate between colors
-        function interpolateColor(color1, color2, color3, factor) {
-            // factor goes from 0 to 1
-            // 0-0.5: blend from color1 to color2
-            // 0.5-1: blend from color2 to color3
-            
-            let startColor, endColor, localFactor;
-            
-            if (factor <= 0.5) {
-                // First half: original color to grey
-                startColor = color1;
-                endColor = color2;
-                localFactor = factor * 2; // 0 to 1
-            } else {
-                // Second half: grey to black
-                startColor = color2;
-                endColor = color3;
-                localFactor = (factor - 0.5) * 2; // 0 to 1
-            }
-            
-            const r1 = parseInt(startColor.substring(1, 3), 16);
-            const g1 = parseInt(startColor.substring(3, 5), 16);
-            const b1 = parseInt(startColor.substring(5, 7), 16);
-            
-            const r2 = parseInt(endColor.substring(1, 3), 16);
-            const g2 = parseInt(endColor.substring(3, 5), 16);
-            const b2 = parseInt(endColor.substring(5, 7), 16);
-            
-            const r = Math.round(r1 + (r2 - r1) * localFactor);
-            const g = Math.round(g1 + (g2 - g1) * localFactor);
-            const b = Math.round(b1 + (b2 - b1) * localFactor);
-            
-            return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
-        }
-        
-        // DNA Helix parameters - increased to go almost to bottom
-        const helixHeight = 8000; // Much longer to extend down page
-        const helixWidth = 200; // Reduced from 300 to 200 for tighter spiral with more margin
+        // DNA Helix parameters
+        const helixHeight = 2000;
+        const helixWidth = 300;
         const hexSize = 15;
-        const pairCount = 100; // More pairs for longer helix
+        const pairCount = 40;
         const rotationsPerScroll = 0.5;
-        
-        // Get document height to calculate fade
-        function getDocumentHeight() {
-            return Math.max(
-                document.body.scrollHeight,
-                document.body.offsetHeight,
-                document.documentElement.clientHeight,
-                document.documentElement.scrollHeight,
-                document.documentElement.offsetHeight
-            );
-        }
         
         function drawDNA() {
             ctx.clearRect(0, 0, width, height);
             
             const scrollProgress = window.pageYOffset;
             scrollRotation = (scrollProgress / 500) * Math.PI * rotationsPerScroll;
-            
-            const docHeight = getDocumentHeight();
-            
-            // Color fade: original -> grey (50% to 70%)
-            const colorFadeStart = docHeight * 0.5;
-            const colorFadeToGrey = docHeight * 0.7;
-            
-            // Color fade: grey -> black (70% to 85%)
-            const greyToBlackStart = docHeight * 0.7;
-            const greyToBlackEnd = docHeight * 0.85;
-            
-            // Opacity fade: fade out completely (85% to 100%)
-            const opacityFadeStart = docHeight * 0.85;
-            const opacityFadeEnd = docHeight * 1.0;
             
             // Draw connecting lines and hexagons
             for (let i = 0; i < pairCount; i++) {
@@ -1211,56 +1090,14 @@
                 const x2 = centerX + Math.cos(angle2) * helixWidth;
                 const z2 = Math.sin(angle2) * helixWidth;
                 
-                // Calculate base opacity based on z-depth
-                const baseOpacity1 = (z1 + helixWidth) / (helixWidth * 2) * 0.7 + 0.3;
-                const baseOpacity2 = (z2 + helixWidth) / (helixWidth * 2) * 0.7 + 0.3;
+                // Calculate opacity based on z-depth
+                const opacity1 = (z1 + helixWidth) / (helixWidth * 2) * 0.7 + 0.3;
+                const opacity2 = (z2 + helixWidth) / (helixWidth * 2) * 0.7 + 0.3;
                 
-                // Calculate absolute position in document
-                const absoluteY = y + scrollProgress * 0.5;
-                
-                // Determine the color based on position
-                let blueColor = '#3b82f6';
-                let orangeColor = '#f97316';
-                let lineColor = '#64748b';
-                
-                // Phase 1: Original colors to grey (50% to 70%)
-                if (absoluteY >= colorFadeStart && absoluteY < colorFadeToGrey) {
-                    const factor = (absoluteY - colorFadeStart) / (colorFadeToGrey - colorFadeStart);
-                    blueColor = interpolateColor('#3b82f6', '#64748b', '#64748b', factor);
-                    orangeColor = interpolateColor('#f97316', '#64748b', '#64748b', factor);
-                    lineColor = interpolateColor('#64748b', '#404040', '#404040', factor);
-                }
-                // Phase 2: Grey to black (70% to 85%)
-                else if (absoluteY >= greyToBlackStart && absoluteY < greyToBlackEnd) {
-                    const factor = (absoluteY - greyToBlackStart) / (greyToBlackEnd - greyToBlackStart);
-                    blueColor = interpolateColor('#64748b', '#000000', '#000000', factor);
-                    orangeColor = interpolateColor('#64748b', '#000000', '#000000', factor);
-                    lineColor = interpolateColor('#404040', '#000000', '#000000', factor);
-                }
-                // Phase 3: Black (85% onwards)
-                else if (absoluteY >= greyToBlackEnd) {
-                    blueColor = '#000000';
-                    orangeColor = '#000000';
-                    lineColor = '#000000';
-                }
-                
-                // Calculate opacity fade at the very bottom (85% to 100%)
-                let opacityMultiplier = 1;
-                if (absoluteY >= opacityFadeStart) {
-                    opacityMultiplier = Math.max(0, 1 - ((absoluteY - opacityFadeStart) / (opacityFadeEnd - opacityFadeStart)));
-                }
-                
-                // Apply opacity multiplier to base opacity
-                const opacity1 = baseOpacity1 * opacityMultiplier;
-                const opacity2 = baseOpacity2 * opacityMultiplier;
-                
-                // Skip drawing if completely transparent
-                if (opacity1 <= 0.01 && opacity2 <= 0.01) continue;
-                
-                // Draw connecting line with fading
+                // Draw connecting line
                 ctx.save();
                 ctx.globalAlpha = Math.min(opacity1, opacity2) * 0.4;
-                ctx.strokeStyle = lineColor;
+                ctx.strokeStyle = '#64748b';
                 ctx.lineWidth = 2;
                 ctx.beginPath();
                 ctx.moveTo(x1, y);
@@ -1268,13 +1105,13 @@
                 ctx.stroke();
                 ctx.restore();
                 
-                // Draw hexagons with fading colors and opacity
+                // Draw hexagons
                 if (z1 > z2) {
-                    drawHexagon(x2, y, hexSize, orangeColor, opacity2);
-                    drawHexagon(x1, y, hexSize, blueColor, opacity1);
+                    drawHexagon(x2, y, hexSize, '#f97316', opacity2);
+                    drawHexagon(x1, y, hexSize, '#3b82f6', opacity1);
                 } else {
-                    drawHexagon(x1, y, hexSize, blueColor, opacity1);
-                    drawHexagon(x2, y, hexSize, orangeColor, opacity2);
+                    drawHexagon(x1, y, hexSize, '#3b82f6', opacity1);
+                    drawHexagon(x2, y, hexSize, '#f97316', opacity2);
                 }
             }
         }
