@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRaaS - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* DNA Helix Canvas */
+        #dna-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 100px 20px 100px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .tagline {
+            font-size: 2rem;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #cbd5e1;
+            font-weight: 300;
+            line-height: 1.8;
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        .coming-soon {
+            margin-top: 3rem;
+            padding: 1.5rem 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            display: inline-block;
+            animation: fadeInUp 1.6s ease-out, pulse 2s infinite 2s;
+        }
+
+        .coming-soon-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #3b82f6 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+            }
+        }
+
+        .powered-by {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #64748b;
+            font-size: 0.9rem;
+            z-index: 10;
+            animation: fadeIn 2s ease-out 1.8s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 4rem;
+            }
+            
+            .tagline {
+                font-size: 1.3rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .coming-soon {
+                padding: 1rem 2rem;
+            }
+
+            .coming-soon-text {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+        }
+
+        .partner-link {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+            border: none;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeIn 2s ease-out 2s both;
+        }
+
+        .partner-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .partner-link {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .powered-by {
+                bottom: 80px;
+            }
+        }
+
+        .video-container {
+            margin-top: 3rem;
+            max-width: 900px;
+            width: 100%;
+            padding: 0 40px;
+            animation: fadeInUp 1.8s ease-out;
+        }
+
+        .articles-container {
+            margin-top: 3rem;
+            max-width: 1000px;
+            width: 100%;
+            padding: 0 40px;
+            animation: fadeInUp 1.8s ease-out;
+        }
+
+        .articles-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .articles-header h2 {
+            font-size: 1.8rem;
+            color: #e2e8f0;
+            margin-bottom: 0.5rem;
+        }
+
+        .articles-header p {
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .article-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(249, 115, 22, 0.5);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .article-provider {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        .aws-badge {
+            background: rgba(255, 153, 0, 0.2);
+            color: #ff9900;
+        }
+
+        .google-badge {
+            background: rgba(66, 133, 244, 0.2);
+            color: #4285f4;
+        }
+
+        .azure-badge {
+            background: rgba(0, 120, 212, 0.2);
+            color: #0078d4;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .article-description {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #64748b;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .article-source {
+            font-weight: 500;
+        }
+
+        .article-date {
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .articles-container {
+                padding: 0 20px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .articles-header h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="dna-canvas"></canvas>
+
+    <div class="cover-content">
+        <h1>DRaaS</h1>
+        <p class="tagline">Disaster Recovery as a Service</p>
+        <p class="subtitle">Your Company DNA is on the Line<br>Multi-cloud replication to keep your business online</p>
+        <div class="coming-soon">
+            <span class="coming-soon-text">COMING SOON</span>
+        </div>
+        
+        <div class="articles-container">
+            <div class="articles-header">
+                <h2>When Major Cloud Providers Go Down, Businesses Stand Still</h2>
+                <p>We keep you online, at a fraction of the cost. Seeking partners now</p>
+            </div>
+            <div class="articles-grid">
+                <a href="https://www.nbcnews.com/news/us-news/amazon-web-services-outage-websites-offline-rcna238594" target="_blank" rel="noopener noreferrer" class="article-card">
+                    <span class="article-provider aws-badge">AWS</span>
+                    <div class="article-title">Major AWS Outage Takes Down Snapchat, Ring, and Thousands of Services</div>
+                    <div class="article-description">A DNS resolution issue in AWS's northern Virginia data center disrupted services worldwide for hours, affecting millions of users across gaming, financial, and enterprise platforms.</div>
+                    <div class="article-meta">
+                        <span class="article-source">NBC News</span>
+                        <span class="article-date">October 2025</span>
+                    </div>
+                </a>
+                
+                <a href="https://www.cnbc.com/2025/06/16/google-cloud-outage-apology.html" target="_blank" rel="noopener noreferrer" class="article-card">
+                    <span class="article-provider google-badge">Google Cloud</span>
+                    <div class="article-title">Google Cloud Outage Disrupts 70+ Services for Over 7 Hours</div>
+                    <div class="article-description">A flawed software update caused cascading failures across Google Cloud, knocking out Spotify, Snapchat, Cloudflare, and OpenAI. Google apologized for the "multiple layers" of errors.</div>
+                    <div class="article-meta">
+                        <span class="article-source">CNBC</span>
+                        <span class="article-date">June 2025</span>
+                    </div>
+                </a>
+                
+                <a href="https://www.cnbc.com/2025/10/29/microsoft-hit-with-azure-365-outage-ahead-of-quarterly-earnings.html" target="_blank" rel="noopener noreferrer" class="article-card">
+                    <span class="article-provider azure-badge">Azure</span>
+                    <div class="article-title">Microsoft Azure Outage Hits 365, Xbox, Minecraft Before Earnings</div>
+                    <div class="article-description">An "inadvertent configuration change" to Azure Front Door caused widespread disruptions across Microsoft services and customer applications for over 5 hours, just days after the AWS outage.</div>
+                    <div class="article-meta">
+                        <span class="article-source">CNBC</span>
+                        <span class="article-date">October 2025</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <a href="mailto:dr@migratewithmatt.com?subject=DRaaS%20Partnership%20Inquiry" class="partner-link">Partner With Us</a>
+
+    <div class="powered-by">
+        Powered by Schober Consulting LLC &copy; 2025
+    </div>
+
+    <script>
+        const canvas = document.getElementById('dna-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height, centerX, centerY;
+        let animationProgress = 0;
+        
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            centerX = width / 2;
+            centerY = height / 2;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Hexagon drawing function
+        function drawHexagon(x, y, size, color, opacity = 1) {
+            ctx.save();
+            ctx.globalAlpha = opacity;
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+                const angle = (Math.PI / 3) * i;
+                const hx = x + size * Math.cos(angle);
+                const hy = y + size * Math.sin(angle);
+                if (i === 0) {
+                    ctx.moveTo(hx, hy);
+                } else {
+                    ctx.lineTo(hx, hy);
+                }
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.restore();
+        }
+        
+        // DNA Helix parameters
+        const helixWidth = 300;
+        const hexSize = 15;
+        const pairCount = 30;
+        const verticalSpacing = 60;
+        
+        // Designate 3 specific hexagons to be dark black (using specific indices)
+        const blackHexIndices = [5, 15, 23]; // These will be the dark black hexagons
+        
+        function drawDNA() {
+            ctx.clearRect(0, 0, width, height);
+            
+            animationProgress += 0.005;
+            
+            // Draw connecting lines and hexagons
+            for (let i = 0; i < pairCount; i++) {
+                const t = i / pairCount;
+                const y = centerY - (pairCount * verticalSpacing / 2) + (i * verticalSpacing);
+                
+                const angle1 = t * Math.PI * 6 + animationProgress;
+                const angle2 = angle1 + Math.PI;
+                
+                const x1 = centerX + Math.cos(angle1) * helixWidth;
+                const z1 = Math.sin(angle1) * helixWidth;
+                
+                const x2 = centerX + Math.cos(angle2) * helixWidth;
+                const z2 = Math.sin(angle2) * helixWidth;
+                
+                // Calculate opacity based on z-depth (closer = more opaque)
+                const opacity1 = (z1 + helixWidth) / (helixWidth * 2) * 0.7 + 0.3;
+                const opacity2 = (z2 + helixWidth) / (helixWidth * 2) * 0.7 + 0.3;
+                
+                // Determine if these hexagons should be black
+                const isBlackHex = blackHexIndices.includes(i);
+                const color1 = isBlackHex ? '#000000' : '#3b82f6';
+                const color2 = isBlackHex ? '#000000' : '#f97316';
+                
+                // Draw connecting line between hexagons
+                ctx.save();
+                ctx.globalAlpha = Math.min(opacity1, opacity2) * 0.4;
+                ctx.strokeStyle = '#64748b';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(x1, y);
+                ctx.lineTo(x2, y);
+                ctx.stroke();
+                ctx.restore();
+                
+                // Draw hexagons (blue strand in front, orange in back, or black if designated)
+                if (z1 > z2) {
+                    drawHexagon(x2, y, hexSize, color2, opacity2);
+                    drawHexagon(x1, y, hexSize, color1, opacity1);
+                } else {
+                    drawHexagon(x1, y, hexSize, color1, opacity1);
+                    drawHexagon(x2, y, hexSize, color2, opacity2);
+                }
+            }
+        }
+        
+        // Animation loop
+        function animate() {
+            drawDNA();
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    </script>
+</body>
+</html>
