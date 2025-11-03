@@ -238,8 +238,11 @@
 
         .articles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .article-card {
@@ -250,7 +253,9 @@
             padding: 1.5rem;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            min-height: 250px;
         }
 
         .article-card:hover {
@@ -325,6 +330,7 @@
 
             .articles-grid {
                 grid-template-columns: 1fr;
+                max-width: 100%;
             }
 
             .articles-header h2 {
@@ -339,7 +345,7 @@
     <div class="cover-content">
         <h1>DRaaS</h1>
         <p class="tagline">Disaster Recovery as a Service</p>
-        <p class="subtitle">Your Company DNA is on the Line<br>Multi-cloud replication to keep your business online</p>
+        <p class="subtitle">Your Company DNA is on the Line<br>Real-time replication to keep your business available at all times</p>
         <div class="coming-soon">
             <span class="coming-soon-text">COMING SOON</span>
         </div>
@@ -351,34 +357,44 @@
             </div>
             <div class="articles-grid">
                 <a href="https://www.nbcnews.com/news/us-news/amazon-web-services-outage-websites-offline-rcna238594" target="_blank" rel="noopener noreferrer" class="article-card">
-                    <span class="article-provider aws-badge">AWS</span>
-                    <div class="article-title">Major AWS Outage Takes Down Snapchat, Ring, and Thousands of Services</div>
-                    <div class="article-description">A DNS resolution issue in AWS's northern Virginia data center disrupted services worldwide for hours, affecting millions of users across gaming, financial, and enterprise platforms.</div>
+                    <span class="article-provider aws-badge">RECENT NEWS</span>
+                    <div class="article-title">Major AWS Outage Takes Down Thousands of Services Globally</div>
+                    <div class="article-description">DNS resolution failures in AWS's Virginia data center disrupted Snapchat, Ring, financial platforms, and enterprise services for hours, affecting millions worldwide.</div>
                     <div class="article-meta">
                         <span class="article-source">NBC News</span>
                         <span class="article-date">October 2025</span>
                     </div>
                 </a>
                 
-                <a href="https://www.cnbc.com/2025/06/16/google-cloud-outage-apology.html" target="_blank" rel="noopener noreferrer" class="article-card">
-                    <span class="article-provider google-badge">Google Cloud</span>
-                    <div class="article-title">Google Cloud Outage Disrupts 70+ Services for Over 7 Hours</div>
-                    <div class="article-description">A flawed software update caused cascading failures across Google Cloud, knocking out Spotify, Snapchat, Cloudflare, and OpenAI. Google apologized for the "multiple layers" of errors.</div>
+                <div class="article-card" style="cursor: default;">
+                    <span class="article-provider google-badge">COST SAVINGS</span>
+                    <div class="article-title">60-75% Lower With Full-Service Support Included</div>
+                    <div class="article-description">Real-time replication eliminates expensive redundant infrastructure. Professional services, dedicated account management, and 24/7 expert monitoring included—not as add-ons. Pay only for resources used.</div>
                     <div class="article-meta">
-                        <span class="article-source">CNBC</span>
-                        <span class="article-date">June 2025</span>
+                        <span class="article-source">DRaaS Platform</span>
+                        <span class="article-date">All-Inclusive Pricing</span>
                     </div>
-                </a>
+                </div>
                 
-                <a href="https://www.cnbc.com/2025/10/29/microsoft-hit-with-azure-365-outage-ahead-of-quarterly-earnings.html" target="_blank" rel="noopener noreferrer" class="article-card">
-                    <span class="article-provider azure-badge">Azure</span>
-                    <div class="article-title">Microsoft Azure Outage Hits 365, Xbox, Minecraft Before Earnings</div>
-                    <div class="article-description">An "inadvertent configuration change" to Azure Front Door caused widespread disruptions across Microsoft services and customer applications for over 5 hours, just days after the AWS outage.</div>
+                <div class="article-card" style="cursor: default;">
+                    <span class="article-provider azure-badge">BUILT FOR MID-MARKET & ENTERPRISE</span>
+                    <div class="article-title">Professional Services + Platform Excellence</div>
+                    <div class="article-description">Beyond technology: dedicated DR strategists, 24/7 monitoring, yearly disaster simulations, and hands-on implementation support. We don't just provide a platform—we're your disaster recovery partner with expert guidance every step of the way.</div>
                     <div class="article-meta">
-                        <span class="article-source">CNBC</span>
-                        <span class="article-date">October 2025</span>
+                        <span class="article-source">DRaaS Platform</span>
+                        <span class="article-date">Full-Service Model</span>
                     </div>
-                </a>
+                </div>
+                
+                <div class="article-card" style="cursor: default;">
+                    <span class="article-provider aws-badge">PARTNERSHIP MODEL</span>
+                    <div class="article-title">White-Label Solutions for MSPs & Resellers</div>
+                    <div class="article-description">Expand your service portfolio with our turnkey DR platform. Revenue sharing, co-branded solutions, and technical support included. Help your clients stay online while growing your business.</div>
+                    <div class="article-meta">
+                        <span class="article-source">DRaaS Platform</span>
+                        <span class="article-date">Partner Program</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -386,7 +402,8 @@
     <a href="mailto:dr@migratewithmatt.com?subject=DRaaS%20Partnership%20Inquiry" class="partner-link">Partner With Us</a>
 
     <div class="powered-by">
-        Powered by Schober Consulting LLC &copy; 2025
+        Powered by Schober Consulting LLC &copy; 2025<br>
+        2136 Ford Parkway #8069, Saint Paul, MN 55116
     </div>
 
     <script>
